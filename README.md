@@ -1,9 +1,13 @@
-# Making Sense of Review Data
+# Accounting for Taste
 
-My capstone project aims to improve product review systems by accounting for individual biases among reviewers. Most review aggregation algorithms are a simple average of all existing reviews. However, this method overlooks the fact that people have different standards and use different criteria when forming opinions.
+My capstone project aims to improve product review systems by accounting for individual biases among reviewers. To demonstrate, I analyze a dataset of 20 million film reviews across 27,000 films from the MovieLens project
 
-I implement a new algorithm that adjusts each review to account for the individual’s reviewing behavior. Specifically, I normalize each review based on the mean and standard deviation of all of that individual’s reviews. For instance, if an reviewer typically gives 2 or 3 stars, a 5 star review from them is worth more the same rating from an individual that typically gives 4 or 5 stars.
+Most review aggregation algorithms are a simple average of all existing reviews. However, this method overlooks the fact that people have different standards and use different criteria when forming opinions. I implement a new algorithm that adjusts each review to account for the individual’s reviewing behavior. Specifically, I normalize each review based on the mean and standard deviation of all of that individual’s reviews.
 
-The dataset of reviews I use is sourced from the MovieLens project, which has collected over 20 million movie reviews across over 25,000 films. I evaluate my algorithm by using normalized movie reviews to predict the amount of money a film earns in the box office and compare the results to a model using unaltered reviews.
+We can aggregate these normalized ratings and compare them to conventionally aggregated movie scores. Although there is substantial correlation between the two measures, normalizing individual reviews does change the distribution of movie scores.
 
-I am currently in the process of refining the predictive model to include additional features that should help improve accuracy. In particular, I am scraping cast information, budget, and release dates for films from IMDB. I also plan on developing a web app that will allow users to input movie metadata, either real or hypothetical, and generate predicted box office earnings.
+Given these new scores, we can assess the value of normalizing individual reviews by comparing the accuracy with which each method predicts domestic box office grosses. Earnings for nearly 10,000 films were scraped from IMDb.
+
+Compared with a model using unadjusted reviews, my model using normalized film  reviews performs better across a variety of metrics. Granted, the improvements are generally small, but this should change as the base model is refined.
+
+Further work will focus on improving the base model to more accurately predict earnings. I plan to incorporate data on film studios, directors, and casts, as well as use text analysis on film titles, plots, and critic reviews.
